@@ -6,10 +6,10 @@ class LlamadaFinDeSemana(codigo_cliente: Int, fecha_llamada: String, hora_llamad
         if (it.codigo_cliente == nroDeClienteABuscar) {
             when (it.tipo_llamada) {
                 'L' -> {
-                    costoTotalDelCliente = it.duracion_llamada * 0.01
+                    costoTotalDelCliente = it.duracion_llamada.times(0.01)
                 }
                 'I' -> {
-                    costoTotalDelCliente= it.duracion_llamada* 0.02
+                    costoTotalDelCliente= it.duracion_llamada.times(0.02)
                 }
             }
 

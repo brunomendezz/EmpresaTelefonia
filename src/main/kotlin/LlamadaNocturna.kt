@@ -7,10 +7,10 @@ class LlamadaNocturna(codigo_cliente: Int, fecha_llamada: String, hora_llamada: 
             if (it.codigo_cliente == nroDeClienteABuscar) {
                 when (it.tipo_llamada) {
                     'L' -> {
-                        costoTotalDelCliente = (0.02 * it.duracion_llamada)
+                        costoTotalDelCliente = it.duracion_llamada.times(0.02)
                     }
                     'I' -> {
-                       costoTotalDelCliente= (it.duracion_llamada* 0.04)
+                       costoTotalDelCliente= it.duracion_llamada.times(0.04)
                     }
                 }
             }

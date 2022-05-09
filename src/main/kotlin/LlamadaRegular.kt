@@ -7,13 +7,17 @@ class LlamadaRegular(codigo_cliente: Int, fecha_llamada: String, hora_llamada: S
                 when (it.tipo_llamada) {
                     'L' -> {
                         costoTotalDelCliente = if (ClientRepository.saberSiElClienteEsNuevo(nroDeClienteABuscar)){
-                            it.duracion_llamada * 0.02
+                            it.duracion_llamada.times(0.02)
                         }else{
-                            it.duracion_llamada * 0.05
+                            it.duracion_llamada.times(0.05)
                         }
                     }
                     'I' -> {
-                        costoTotalDelCliente = it.duracion_llamada * 0.1
+                        costoTotalDelCliente = if (ClientRepository.saberSiElClienteEsNuevo(nroDeClienteABuscar)){
+                            it.duracion_llamada.times(0.04)
+                        }else{
+                            it.duracion_llamada.times(0.1)
+                        }
                     }
                 }
 

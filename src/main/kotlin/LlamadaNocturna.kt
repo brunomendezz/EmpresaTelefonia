@@ -3,16 +3,8 @@ class LlamadaNocturna(codigo_cliente: Int, fecha_llamada: String, hora_llamada: 
     override fun consultarCostoTotalDeUnCliente(nroDeClienteABuscar: Int): Double {
         var costoTotalDelCliente=0.0
         CallHistoryRepository.get().forEach {
-
             if (it.codigo_cliente == nroDeClienteABuscar) {
-                when (it.tipo_llamada) {
-                    'L' -> {
-                        costoTotalDelCliente = it.duracion_llamada.times(0.02)
-                    }
-                    'I' -> {
-                       costoTotalDelCliente= it.duracion_llamada.times(0.04)
-                    }
-                }
+                costoTotalDelCliente = it.duracion_llamada.times(0.02)
             }
         }
         return costoTotalDelCliente

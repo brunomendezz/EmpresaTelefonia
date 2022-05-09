@@ -26,15 +26,21 @@ private fun mostrarMenu() {
   when (opcion) {
    1 -> {
     println("INGRESE EL NOMBRE DEL USUARIO")
-    var nombre = readln()!!.toString()
+    try {
+     var nombre = readln()!!.toString()
+     check(nombre.length>=3)
 
-    println("INGRESE EL APELLIDO DEL USUARIO")
-    var apellido = readln()!!.toString()
+     println("INGRESE EL APELLIDO DEL USUARIO")
+     var apellido = readln()!!.toString()
+     check(apellido.length>=3)
 
-    if (ClientManager().darDeAltaCliente(nombre, apellido)){
-     println("EL USUARIO SE HA AGREGADO CORRECTAMENTE")
-    }else{
-     println("NO SE HA PODIDO AGREGAR EL USUARIO , INTENTELO DE NUVO")
+     if (ClientManager().darDeAltaCliente(nombre, apellido)) {
+      println("EL USUARIO SE HA AGREGADO CORRECTAMENTE")
+     } else {
+      println("NO SE HA PODIDO AGREGAR EL USUARIO , INTENTELO DE NUVO")
+     }
+    }catch (e:Exception){
+     println("ERROR!! $e INGRESAR NOMBRE O APELLIDO VALIDO")
     }
    }
 
@@ -73,6 +79,7 @@ println("ERROR!!! $e USTED HA INGRESADO UN VALOR QUE NO ESTA DENTRO DE LOS PARAM
  println("GRACIAS VUELVAS PRONTOS")
 
   }
+
 
 
 

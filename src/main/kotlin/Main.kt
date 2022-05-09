@@ -16,7 +16,12 @@ private fun mostrarMenu() {
            "\nOPCION 0: SALIR" +
            "\nELIJA UNA OPCION:"
   )
-  opcion = readln()!!.toInt()
+  try {
+   opcion = readln()!!.toInt()
+   if (opcion != 1 && opcion!=2 && opcion!=3 && opcion!=0  ){
+    println("INGRESE UNA OPCION VALIDA.")
+    println()
+   }
 
   when (opcion) {
    1 -> {
@@ -39,25 +44,36 @@ private fun mostrarMenu() {
     println("------------------")
     println("LISTA DE CLIENTES")
     println("-------------------")
-    listaDeClientes.forEach{
+
+    listaDeClientes.forEach {
      println("CODIGO: ${it.codigo_cliente}, NOMBRE = ${it.nombre_cliente}, APELLIDO = ${it.apellido_cliente}, FECHA DE ALTA = ${it.fecha_de_alta_cliente} ")
     }
     println("INGRESE EL NUMERO DE CLIENTE QUE DESEA BUSCAR")
     var nroDeClienteABuscar = readln()!!.toInt()
-
-    println("EL COSTO DEL CLIENTE ES = $ ${CallsManager().costoDeLlamada(nroDeClienteABuscar)}")
-    println()
-     }
-   3 ->{
-    println("EL COSTO TOTAL DE LOS CLIENTES ES DE $ ${CallsManager().costoTotalDeLosClientes()}")
+    if (nroDeClienteABuscar !in 0..listaDeClientes.size) {
+     println("EL NUMERO DE CLIENTE QUE INGRESO NO ESTA REGISTRADO, INGRESE UN NUMERO VALIDO")
+    } else {
+     println("EL COSTO DEL CLIENTE ES = $ ${CallsManager().costoDeLlamada(nroDeClienteABuscar)}")
+     println()
+    }
    }
+    3 ->{
+     println("EL COSTO TOTAL DE LOS CLIENTES ES DE $ ${CallsManager().costoTotalDeLosClientes()}")
+    }
 
     }
+  }catch (e:NumberFormatException){
+e.message
+println("ERROR!!! $e USTED HA INGRESADO UN VALOR QUE NO ESTA DENTRO DE LOS PARAMETROS, INTENTELO DE NUEVO:")
+   println()
+
+  }
 
    }
  println("GRACIAS VUELVAS PRONTOS")
 
   }
+
 
 
 

@@ -1,3 +1,4 @@
+import com.sun.jdi.IntegerValue
 
 fun main(args: Array<String>) {
 
@@ -26,12 +27,19 @@ private fun mostrarMenu() {
   when (opcion) {
    1 -> {
     println("INGRESE EL NOMBRE DEL USUARIO")
+    var chequeoDeNoNumeros ={nombreOApellido:String-> nombreOApellido.forEach {
+     if (it.isDigit())
+      throw java.lang.RuntimeException("NO INGRESAR NUMEROS ,") }
+    }
+
     try {
      var nombre = readln()!!.toString()
+     chequeoDeNoNumeros(nombre)
      check(nombre.length>=3)
 
      println("INGRESE EL APELLIDO DEL USUARIO")
      var apellido = readln()!!.toString()
+     chequeoDeNoNumeros(apellido)
      check(apellido.length>=3)
 
      if (ClientManager().darDeAltaCliente(nombre, apellido)) {
